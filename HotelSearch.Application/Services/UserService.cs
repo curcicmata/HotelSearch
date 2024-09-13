@@ -1,6 +1,5 @@
 ﻿using HotelSearch.Domain.Models.User;
 using HotelSearch.Domain.Repository;
-using Microsoft.Extensions.Options;
 
 namespace HotelSearch.Application.Services;
 

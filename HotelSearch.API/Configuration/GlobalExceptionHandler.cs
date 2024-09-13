@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace HotelSearch.API.Configuration;
 
-
 internal sealed class GlobalExceptionHandler : IExceptionHandler
 {
     private readonly ILogger<GlobalExceptionHandler> _logger;

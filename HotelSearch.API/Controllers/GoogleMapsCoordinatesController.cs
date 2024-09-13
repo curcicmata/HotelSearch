@@ -1,13 +1,11 @@
 ﻿using HotelSearch.Application.Services;
 using HotelSearch.Domain.Models;
-
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using static HotelSearch.API.Helpers.JwtMiddleware;
 
 namespace HotelSearch.API.Controllers;
 
-//[Authorize]
+
 [Route("api/[controller]")]
 [ApiController]
 public class GoogleMapsCoordinatesController : ControllerBase

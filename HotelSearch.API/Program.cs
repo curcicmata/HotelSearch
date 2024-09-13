@@ -1,16 +1,14 @@
-using HotelSearch.Infrastructure;
-using HotelSearch.Application;
-using HotelSearch.Application.Configuration;
 using HotelSearch.API.Configuration;
 using HotelSearch.API.Helpers;
+using HotelSearch.Application;
+using HotelSearch.Application.Configuration;
 using HotelSearch.Domain.Models.User;
-using Microsoft.OpenApi.Models;
+using HotelSearch.Infrastructure;
+using HotelSearch.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-using HotelSearch.Infrastructure.Data;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -109,7 +107,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-// for seeding default system user
+// For seeding default system user - testing purposes only
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<HotelContext>();

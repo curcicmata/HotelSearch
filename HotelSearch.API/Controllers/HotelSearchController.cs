@@ -1,8 +1,10 @@
 ﻿using HotelSearch.Application.Services;
 using HotelSearch.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using static HotelSearch.API.Helpers.JwtMiddleware;
 
 namespace HotelSearch.API.Controllers;
+
 
 [Route("api/[controller]")]
 [ApiController]
@@ -15,6 +17,7 @@ public class HotelSearchController : ControllerBase
         _hotelService = hotelService;
     }
 
+
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Hotel>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -22,6 +25,7 @@ public class HotelSearchController : ControllerBase
     {
         return await _hotelService.GetAllHotels();
     }
+
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Hotel))]
@@ -31,7 +35,9 @@ public class HotelSearchController : ControllerBase
         return await _hotelService.GetHotelById(id);
     }
 
+
     [HttpPost]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Hotel))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<Hotel> SaveHotel(Hotel hotel)
@@ -39,7 +45,9 @@ public class HotelSearchController : ControllerBase
         return await _hotelService.SaveHotel(hotel);
     }
 
+
     [HttpPut]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<bool> UpdateHotel(Hotel hotel)
@@ -47,13 +55,16 @@ public class HotelSearchController : ControllerBase
         return await _hotelService.UpdateHotel(hotel);
     }
 
+
     [HttpDelete("{id}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<bool> DeleteHotel(int id)
     {
         return await _hotelService.DeleteHotelById(id);
     }
+
 
     // lat=45.8132734&lng=15.976034&radius=10
     [HttpGet("search")]
@@ -76,4 +87,3 @@ public class HotelSearchController : ControllerBase
         return Ok(nearbyHotels);
     }
 }
-
